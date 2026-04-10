@@ -47,10 +47,10 @@ if (ctaButton) {
     });
 }
 
-// ==================== INTERSECTION OBSERVER FOR ANIMATIONS ====================
+// ==================== ENHANCED INTERSECTION OBSERVER FOR ANIMATIONS ====================
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -67,11 +67,11 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.overview-card, .traveler-card, .restaurant-card, .hotel-card, .timeline-content, .gallery-item').forEach(element => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(20px)';
-    element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    element.style.transition = 'all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     observer.observe(element);
 });
 
-// ==================== NAVBAR SCROLL EFFECT ====================
+// ==================== NAVBAR SCROLL EFFECT WITH ENHANCED BLUR ====================
 const navbar = document.querySelector('.navbar');
 let lastScrollTop = 0;
 
@@ -79,11 +79,13 @@ window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     if (scrollTop > 100) {
-        navbar.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.15)';
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.boxShadow = '0 15px 40px rgba(15, 20, 25, 0.15)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.backdropFilter = 'blur(25px)';
     } else {
-        navbar.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.1)';
-        navbar.style.background = 'rgba(255, 255, 255, 0.78)';
+        navbar.style.boxShadow = '0 8px 32px rgba(15, 20, 25, 0.08)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.85)';
+        navbar.style.backdropFilter = 'blur(20px)';
     }
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
@@ -96,7 +98,7 @@ timelineItems.forEach((item, index) => {
     item.addEventListener('mouseenter', function() {
         timelineItems.forEach(el => {
             if (el !== this) {
-                el.style.opacity = '0.6';
+                el.style.opacity = '0.5';
             }
         });
     });
@@ -204,7 +206,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
     observerLazy.observe(img);
 });
 
-// ==================== SCROLL TO TOP BUTTON ====================
+// ==================== SCROLL TO TOP BUTTON WITH MODERN DESIGN ====================
 function createScrollToTopButton() {
     const button = document.createElement('div');
     button.innerHTML = '↑';
@@ -212,9 +214,9 @@ function createScrollToTopButton() {
         position: fixed;
         bottom: 30px;
         right: 30px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #2d5016, #27ae60);
+        width: 55px;
+        height: 55px;
+        background: linear-gradient(135deg, #e63946, #ff6b7a);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -223,10 +225,11 @@ function createScrollToTopButton() {
         cursor: pointer;
         opacity: 0;
         z-index: 500;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        font-weight: bold;
-        font-size: 1.5rem;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-weight: 900;
+        font-size: 1.8rem;
+        box-shadow: 0 12px 40px rgba(230, 57, 70, 0.3);
+        pointer-events: none;
     `;
     
     document.body.appendChild(button);
@@ -249,11 +252,13 @@ function createScrollToTopButton() {
     });
     
     button.addEventListener('mouseenter', () => {
-        button.style.transform = 'scale(1.1)';
+        button.style.transform = 'scale(1.15) translateY(-5px)';
+        button.style.boxShadow = '0 16px 50px rgba(230, 57, 70, 0.5)';
     });
     
     button.addEventListener('mouseleave', () => {
         button.style.transform = 'scale(1)';
+        button.style.boxShadow = '0 12px 40px rgba(230, 57, 70, 0.3)';
     });
 }
 
